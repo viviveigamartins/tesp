@@ -1,23 +1,23 @@
-package br.unibh.teste01;
+package br.unibh.teste01.entidades;
 
 import java.util.Date;
 
-public class aluno extends Pessoa {
+public class Aluno extends Pessoa {
 	private String matricula;
 	private Date dataAniversario;
 	
 	//construtor entra entre a classe e o get e setting
 	
-	public aluno(){}	
+	public Aluno(){}	
 	
-	public aluno(String matricula, Date dataAniversario) {
+	public Aluno(String matricula, Date dataAniversario) {
 		super();
 		this.matricula = matricula;
 		this.dataAniversario = dataAniversario;
 	}
 		
 	
-	public aluno(Long id, String noem, String cpf, String matricula, Date dataAniversario) {
+	public Aluno(Long id, String noem, String cpf, String matricula, Date dataAniversario) {
 		super(id, noem, cpf);
 		this.matricula = matricula;
 		this.dataAniversario = dataAniversario;

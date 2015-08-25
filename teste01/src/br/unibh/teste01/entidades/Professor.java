@@ -1,4 +1,4 @@
-package br.unibh.teste01;
+package br.unibh.teste01.entidades;
 
 import java.math.BigDecimal;
 
@@ -8,12 +8,13 @@ import java.math.BigDecimal;
  * @version 1.0
  */
 
-public class professor extends Pessoa {
+public class Professor extends Pessoa {
 	
 	
 	//variavel de instancia 
 	
 	private BigDecimal salario;
+	public static Double BONUS =0.1D;
 	
 	//construtor entra entre a classe e o get e setting
 	
@@ -21,15 +22,15 @@ public class professor extends Pessoa {
 	 * construtor padrão
 	 */
 	
-	public professor(){}	
+	public Professor(){}	
 
-	public professor(BigDecimal salario) {
+	public Professor(BigDecimal salario) {
 		super();
 		this.salario = salario;
 	}
 	
 	
-	public professor(Long id, String noem, String cpf, BigDecimal salario) {
+	public Professor(Long id, String noem, String cpf, BigDecimal salario) {
 		super(id, noem, cpf);
 		this.salario = salario;
 	}

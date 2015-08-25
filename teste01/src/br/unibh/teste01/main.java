@@ -1,7 +1,12 @@
 package br.unibh.teste01;
 
 import java.math.BigDecimal;
+import java.sql.Connection;
 import java.util.Date;
+
+import br.unibh.persistencia.JDBCUtil;
+import br.unibh.teste01.entidades.Aluno;
+import br.unibh.teste01.entidades.Professor;
 
 public class main {
 
@@ -9,13 +14,21 @@ public class main {
 		// TODO Auto-generated method stub
 
 		
-	aluno a1 = new aluno(14L,"adriana silva","123456","2252",new Date());
+	Aluno a1 = new Aluno(14L,"adriana silva","123456","2252",new Date());
 	
 	System.out.println(a1);
 	
-	professor prof1 = new professor(15L,"jose humberto","321456", new BigDecimal(100));
+	Professor prof1 = new Professor(15L,"jose humberto","321456", new BigDecimal(100));
 	
 	System.out.println(prof1);
+	
+	try {
+		Connection c = JDBCUtil.getConnection();
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	
 	
 	
 	}
