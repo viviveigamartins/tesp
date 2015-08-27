@@ -41,11 +41,13 @@ public class Aluno extends Pessoa {
 	}
 
 	// metodo toString
-	
 	@Override
 	public String toString() {
-		return "aluno [matricula=" + matricula + ", dataAniversario=" + dataAniversario + "]";
+		return "Aluno [matricula=" + matricula + ", dataAniversario=" + dataAniversario + ", toString()="
+				+ super.toString() + "]";
 	}
+
+	
 	
 	
 
