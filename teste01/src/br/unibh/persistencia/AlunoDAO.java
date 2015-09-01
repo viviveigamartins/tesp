@@ -64,16 +64,11 @@ public class AlunoDAO implements DAO<Aluno,Long> {
 			
 		} finally{
 			
-			try {
-				
+						
 				JDBCUtil.closeConnection();
-				
-			} catch (Exception e) {
-				e.printStackTrace();
-				// TODO: handle exception
+			
 			}
-		}
-		// TODO Auto-generated method stub
+		
 		return lista;
 	}
 	
