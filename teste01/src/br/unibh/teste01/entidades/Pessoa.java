@@ -3,15 +3,15 @@ package br.unibh.teste01.entidades;
 public abstract class Pessoa {
 
 	private Long id;
-	private String noem;
+	private String nome;
 	private String cpf;
 	
 	public Pessoa(){}
 	
 	@Override
 	public String toString() {
-		return "Pessoa [id=" + id + ", noem=" + noem + ", cpf=" + cpf + ", getId()=" + getId() + ", getNoem()="
-				+ getNoem() + ", getCpf()=" + getCpf() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
+		return "Pessoa [id=" + id + ", noem=" + nome + ", cpf=" + cpf + ", getId()=" + getId() + ", getNoem()="
+				+ getNome() + ", getCpf()=" + getCpf() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
 				+ ", toString()=" + super.toString() + "]";
 	}
 
@@ -21,16 +21,19 @@ public abstract class Pessoa {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getNoem() {
-		return noem;
+	
+	public String getNome() {
+		return nome;
 	}
-	public void setNoem(String noem) {
-		this.noem = noem;
+
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
+
 	public Pessoa(Long id, String noem, String cpf) {
 		super();
 		this.id = id;
-		this.noem = noem;
+		this.nome = noem;
 		this.cpf = cpf;
 	}
 	public String getCpf() {
