@@ -41,9 +41,9 @@ public class AlunoDAO implements DAO<Aluno,Long> {
 		
 		try {
 			
-			con =JDBCUtil.getConnection();
-			ResultSet res = 
-					con.prepareStatement("select * from tb_aluno").executeQuery();
+			
+			ResultSet res = JDBCUtil.getConnection().
+					prepareStatement("select * from tb_aluno").executeQuery();
 			
 			while (res.next()){
 				lista.add(
@@ -52,7 +52,8 @@ public class AlunoDAO implements DAO<Aluno,Long> {
 								res.getString("noem"),
 								res.getString("cpf"),
 								res.getString("matricula"),
-								null)
+								res.getDate("dataAniversario"))
+								
 						);
 								
 				
