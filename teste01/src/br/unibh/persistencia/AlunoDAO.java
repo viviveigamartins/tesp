@@ -1,6 +1,5 @@
 package br.unibh.persistencia;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
@@ -10,13 +9,13 @@ import java.util.List;
 import br.unibh.teste01.entidades.Aluno;
 
 public class AlunoDAO implements DAO<Aluno, Long> {
-	private static Connection con = null;
 	private static SimpleDateFormat  df = new SimpleDateFormat ("yyyy-MM-dd");
 
 	@Override
 	public Aluno find(Long id) {
 		try {
-			PreparedStatement p = JDBCUtil.getConnection().prepareStatement("select * from tb_aluno where id =?");
+			PreparedStatement p = JDBCUtil.getConnection().
+					prepareStatement("select * from tb_aluno where id =?");
 
 			p.setLong(1, id);
 			ResultSet res = p.executeQuery();
