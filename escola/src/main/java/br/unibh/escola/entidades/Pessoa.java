@@ -9,6 +9,7 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.Digits;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
@@ -33,6 +34,11 @@ public abstract class Pessoa {
 	
 	
 	private String nome;
+	
+	@NotBlank
+	@Pattern(regexp="\\d[11]",message="Favor fornecer uma sequencia de onze números")
+	@Size(min=11,max=11)
+	@Column(length=11,nullable=false, columnDefinition="CHAR(11)")
 	private String cpf;
 	
 	public Pessoa(){}
