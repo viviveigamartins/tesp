@@ -26,7 +26,7 @@ public class Aluno extends Pessoa {
 	private String matricula;
 	
 	@Temporal (TemporalType.DATE)
-	@Column(name="dataAniversario", nullable=true)
+	@Column(name="data_aniversario", nullable=true)
 	
 	private Date dataAniversario;
 	
