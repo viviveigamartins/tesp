@@ -4,7 +4,11 @@ import java.math.BigDecimal;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Size;
 
 /**
@@ -14,7 +18,11 @@ import javax.validation.constraints.Size;
  */
 
 	@Entity
-	@Table(name ="TB_PROFESSOR")
+	@PrimaryKeyJoinColumn
+	@Table(name ="TB_PROFESSOR",uniqueConstraints = @UniqueConstraint(columnNames ="salario"))
+	@NamedQueries({	
+		@NamedQuery(name="Professor.findByName", query = "select a from Professor a where a.nome like :nome")
+		})
 	
 
 public class Professor extends Pessoa {

@@ -5,7 +5,7 @@ import javax.enterprise.inject.spi.InjectionPoint;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import org.apache.log4j.Logger;
+import java.util.logging.Logger;
 
 /**
  * This class uses CDI to alias Java EE resources, such as the persistence context, to CDI beans
@@ -26,7 +26,7 @@ public class Resources {
    @PersistenceContext
    private EntityManager em;
    
-   @ Produces
+   @Produces
    public Logger produceLog(InjectionPoint injectionPoint) {
 	   return Logger.getLogger(injectionPoint.getMember().
 			   getDeclaringClass().getName());
