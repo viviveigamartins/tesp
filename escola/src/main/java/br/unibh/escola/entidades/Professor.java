@@ -9,6 +9,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Size;
 
 /**
@@ -29,9 +31,9 @@ public class Professor extends Pessoa {
 	
 	
 	//variavel de instancia 
-	@Size(min=500,max=100000)
+	@DecimalMin("500")
+	@DecimalMax("100000")
 	@Column(nullable=true, columnDefinition="DECIMAL(14,2)")
-	
 	private BigDecimal salario;	
 	
 	public static Double BONUS =0.1D;

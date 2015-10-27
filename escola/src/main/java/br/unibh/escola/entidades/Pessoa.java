@@ -36,7 +36,7 @@ public abstract class Pessoa {
 	private String nome;
 	
 	@NotBlank
-	@Pattern(regexp="\\d[11]",message="Favor fornecer uma sequencia de onze números")
+	@Pattern(regexp="\\d{11}",message="Favor fornecer uma sequencia de onze números")
 	@Size(min=11,max=11)
 	@Column(length=11,nullable=false, columnDefinition="CHAR(11)")
 	private String cpf;
