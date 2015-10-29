@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/templates/default.xhtml">
+	<ui:define name="content">
+		<h:panelGroup id="cadastro">
+			<h:form id="cad" rendered="#{salamb.sala != null}">
+				<p:panel>
+					<h:outputText value="Cadastro de Salas"
+						style="font-size:18px;font-weight:bold" />
+					<p:messages />
+					<p:panelGrid columns="3" styleClass="ui-noborder">
+						<p:outputLabel value="Capacidade " />
+						<p:inputText id="capacidade" value="#{salamb.sala.capacidade}"
+							size="50" />
+						<p:message for="capacidade" errorClass="invalid" />
+
+						<p:outputLabel value="Codigo " />
+						<p:inputText id="codigo" value="#{salamb.sala.codigo}" size="50" />
+						<p:message for="codigo" errorClass="invalid" />
+
+						<p:outputLabel value="Data de TErmino " />
+						<p:calendar id="dataTerminoManutencao" value="#{salamb.sala.dataTerminoManutencao}"  size="10"
+							datePattern="dd/MM/yyyy" />
+						<p:message for="dataTerminoManutencao" errorClass="invalid" />
+
+						<p:outputLabel value="Observacao" />
+						<p:inputText id="observacao" value="#{salamb.sala.observacao}"
+							size="10" />
+						<p:message for="observacao" errorClass="invalid" />
+
+						<p:outputLabel value="Possui Computador " />
+						<p:selectBooleanButton id="possuiComputador"
+							value="#{salamb.sala.possuiComputador}" onLabel="SIM"
+							offLabel="NÃO" style="width:60px" />
+						<p:message for="possuiComputador" errorClass="invalid" />
+
+						<p:outputLabel value="Possui DataShow " />
+						<p:selectBooleanButton id="possuiDataShow"
+							value="#{salamb.sala.possuiDataShow}" onLabel="SIM" offLabel="NÃO"
+							style="width:60px" />
+						<p:message for="possuiDataShow" errorClass="invalid" />
+
+
+						<p:outputLabel value="Possui Quadro Branco " />
+						<p:selectBooleanButton id="possuiQuadroBranco"
+							value="#{salamb.sala.possuiQuadroBranco}" onLabel="SIM"
+							offLabel="NÃO" style="width:60px" />
+						<p:message for="possuiQuadroBranco" errorClass="invalid" />
+
+						<p:outputLabel value="Status " />
+						<p:inputText id="status" value="#{salamb.sala.status}" size="14" />
+						<p:message for="status" errorClass="invalid" />
+
+					</p:panelGrid>
+
+					<p:commandButton id="gravar" action="#{salamb.gravar}"
+						value="Gravar" update="cadastro" ajax="false" />
+					<p:commandButton id="cancelar" action="#{salamb.cancelar}"
+						value="Cancelar" immediate="true" update="cadastro,pesquisa"
+						ajax="false" />
+				</p:panel>
+			</h:form>
+		</h:panelGroup>
+		<p:panel id="pesquisa" rendered="#{salamb.sala == null}">
+			<h:outputText value="Lista de Salas"
+				style="font-size:18px;font-weight:bold" />
+			<h:form id="arg">
+				<p:panelGrid columns="4" styleClass="ui-noborder">
+					<p:outputLabel value="Codigo:" />
+					<p:inputText id="codigo" value="#{salamb.codigo}" />
+					<p:commandButton id="pesquisar" action="#{salamb.pesquisar}"
+						value="Pesquisar" update="pesquisa" ajax="false" />
+					<p:commandButton id="novo" action="#{salamb.novo}" value="Novo"
+						update="pesquisa,cadastro" ajax="false" />
+				</p:panelGrid>
+			</h:form>
+			<h:panelGroup rendered="#{empty salamb.salas}">
+				<h:outputText value="Nenhum Sala existe" />
+			</h:panelGroup>
+			<h:form id="edt">
+				<p:dataTable id="tabela" var="sala" value="#{salamb.salas}"
+					rendered="#{not empty salamb.salas}"
+					onrowclick="selectRow('#{sala.id}')" paginator="true" rows="15">
+					<p:column headerText="Id" width="10%" sortBy="#{sala.id}">
+						<div align="center">
+							<h:outputText value="#{sala.id}" />
+						</div>
+					</p:column>
+					
+					<p:column headerText="Capacidade" width="15%"
+						sortBy="#{sala.capacidade}">
+						<div align="center">
+							<h:outputText value="#{sala.capacidade}" />
+						</div>
+					</p:column>
+
+					<p:column headerText="Codigo" width="20%">
+						<div align="center">
+							<h:outputText value="#{sala.codigo}" />
+						</div>
+					</p:column>
+					
+					<p:column headerText="Data de Termino" width="20%">
+						<div align="center">
+							<h:outputText value="#{sala.dataTerminoManutencao}">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</h:outputText>
+						</div>
+					</p:column>
+					
+						<p:column headerText="Observação" width="20%">
+						<div align="center">
+							<h:outputText value="#{sala.observacao}" />
+						</div>
+					</p:column>
+					
+						<p:column headerText="Possui Computador" width="20%">
+						<div align="center">
+							<h:outputText value="#{sala.possuiComputador}" />
+						</div>
+					</p:column>
+					
+						<p:column headerText="Possui Data Show" width="20%">
+						<div align="center">
+							<h:outputText value="#{sala.possuiDataShow}" />
+						</div>
+					</p:column>
+					
+						<p:column headerText="Possui Quadro" width="20%">
+						<div align="center">
+							<h:outputText value="#{sala.possuiQuadroBranco}" />
+						</div>
+					</p:column>
+					
+					<p:column headerText="Status" width="20%">
+						<div align="center">
+							<h:outputText value="#{sala.status}" />
+						</div>
+					</p:column>
+					
+					<p:column headerText="Comandos" width="20%">
+						<div align="center">
+							<p:commandLink id="editar" action="#{salamb.editar(sala.id)}"
+								value="Editar" update="pesquisa" ajax="false" />
+							<h:outputText value=" " />
+							<p:commandLink id="excluir" action="#{salamb.excluir(sala.id)}"
+								value="Excluir" update="pesquisa" ajax="false" />
+						</div>
+					</p:column>
+				</p:dataTable>
+				<p:messages />
+			</h:form>
+		</p:panel>
+	</ui:define>
+</ui:composition>
