@@ -2,6 +2,7 @@ package br.unibh.escola.visao;
 
 import java.util.List;
 import java.util.logging.Logger;
+
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -10,7 +11,6 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
 import br.unibh.escola.entidades.Sala;
-import br.unibh.escola.negocio.ServicoProfessor;
 import br.unibh.escola.negocio.ServicoSala;
 
 @ManagedBean(name = "salamb")
@@ -21,37 +21,42 @@ public class ControleSala {
 	@Inject
 	private Logger log;
 	@Inject
-	private ServicoSala sa;
+	private ServicoSala ss;
 	private Sala sala;
-	private String codigo;
-
+	
 	private List<Sala> salas;
+
+	private int nomeArg;
+	
+	public int getNomeArg() {
+		return nomeArg;
+	}
+
+	public void setNomeArg(int nomeArg) {
+		this.nomeArg = nomeArg;
+	}
 
 	public Sala getSala() {
 		return sala;
 	}
 
-	public void setProfessor(Sala sala) {
+	public void setSala(Sala sala) {
 		this.sala = sala;
-	}
-
-	public String getCodigo() {
-		return codigo;
-	}
-
-	public void setCodigo(String codigo) {
-		this.codigo = codigo;
 	}
 
 	public List<Sala> getSalas() {
 		return salas;
+	}
+	
+	public void setSalas(List<Sala> salas) {
+		this.salas = salas;
 	}
 
 	@PostConstruct
 	public void inicializaLista() {
 		log.info("Executando o MB de Sala");
 		try {
-			salas = sa.findAll();
+			salas = ss.findAll();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -61,11 +66,10 @@ public class ControleSala {
 		FacesMessage facesMsg;
 		try {
 			if (sala.getId() == null) {
-				sala = sa.insert(sala);
+				sala = ss.insert(sala);
 			} else {
-				sala = sa.update(sala);
+				sala = ss.update(sala);
 			}
-			salas = sa.findByName(codigo);
 		} catch (Exception e) {
 			facesMsg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro: " + e.getMessage(), "");
 			FacesContext.getCurrentInstance().addMessage("messagePanel", facesMsg);
@@ -77,7 +81,7 @@ public class ControleSala {
 
 	public void pesquisar() {
 		try {
-			salas = sa.findByName(codigo);
+			salas = ss.findByCapacidade(nomeArg);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -93,7 +97,7 @@ public class ControleSala {
 
 	public void editar(Long id) {
 		try {
-			sala = sa.find(id);
+			sala = ss.find(id);
 			return;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -104,8 +108,7 @@ public class ControleSala {
 	public void excluir(Long id) {
 		FacesMessage facesMsg;
 		try {
-			sa.delete(sa.find(id));
-			salas = sa.findByName(codigo);
+			ss.delete(ss.find(id));
 		} catch (Exception e) {
 			e.printStackTrace();
 			facesMsg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro: " + e.getMessage(), "");
@@ -113,7 +116,7 @@ public class ControleSala {
 			return;
 		}
 		sala = null;
-		facesMsg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Salas	excluído com sucesso!", "");
+		facesMsg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Sala excluído com sucesso!", "");
 		FacesContext.getCurrentInstance().addMessage("messagePanel", facesMsg);
 	}
 }

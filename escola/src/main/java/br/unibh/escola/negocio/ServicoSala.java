@@ -2,10 +2,12 @@ package br.unibh.escola.negocio;
 
 import java.util.List;
 import java.util.logging.Logger;
+
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+
 import br.unibh.escola.entidades.Sala;
 
 @Stateless
@@ -46,14 +48,22 @@ public class ServicoSala implements DAO<Sala, Long> {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Sala> findAll() throws Exception {
-		log.info("Encontrando todas as Salas");
+		log.info("Encontrando todos os salas");
 		return em.createQuery("from Sala").getResultList();
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Sala> findByName(String name) throws Exception {
-		log.info("Encontrando Sala " + name);
-		return em.createNamedQuery("Sala.findByName").setParameter("codigo", name + "%").getResultList();
+		/*
+		 * esse método foi implementado porque a interface possui esse, porém,
+		 * nesse caso, utilizaremos o método findByCapacidade
+		 */
+		return null;
+	}
+
+	public List<Sala> findByCapacidade(int capacidade) {
+		log.info("Pesquisando por capacidade da sala " + capacidade);
+		return em.createNamedQuery("Sala.findByCapacidade").setParameter("capacidade", capacidade).getResultList();
 	}
 }
