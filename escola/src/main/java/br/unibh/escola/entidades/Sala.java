@@ -7,7 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.PrimaryKeyJoinColumn;
@@ -27,7 +26,7 @@ public class Sala {
 	@Column(name = "ID")
 	private Long id;
 
-	@Column(name = "CODIGO", nullable = false, columnDefinition = "VARCHAR(10)")
+	@Column(name = "CODIGO", nullable = false, columnDefinition = "CHAR(5)")
 	@NotNull
 	private String codigo;
 
@@ -35,15 +34,15 @@ public class Sala {
 	@NotNull
 	private Integer capacidade;
 
-	@Column(name = "POSSUIQUADROBRANCO", nullable = true, columnDefinition = "BOOLEAN")
+	@Column(name = "POSSUI_QUADRO_BRANCO")
 	@NotNull
 	private boolean possuiQuadroBranco;
 
-	@Column(name = "POSSUIDATASHOW", nullable = true, columnDefinition = "BOOLEAN")
+	@Column(name = "POSSUI_DATA_SHOW")
 	@NotNull
 	private boolean possuiDataShow;
 
-	@Column(name = "POSSUICOMPUTADOR", nullable = true, columnDefinition = "BOOLEAN")
+	@Column(name = "POSSUI_COMPUTADOR")
 	@NotNull
 	private boolean possuiComputador;
 
@@ -56,7 +55,7 @@ public class Sala {
 	private int status;
 
 	@Temporal(TemporalType.DATE)
-	@Column(name = "DATATERMINOMANUTENCAO", nullable = true, columnDefinition = "DATE")
+	@Column(name = "DATA_TERMINO_MANUTENCAO", nullable = true, columnDefinition = "DATE")
 	private Date dataTerminoManutencao;
 
 	public Long getId() {
