@@ -14,6 +14,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 @Entity
 @PrimaryKeyJoinColumn
@@ -27,6 +28,7 @@ public class Sala {
 	private Long id;
 
 	@Column(name = "CODIGO", nullable = false, columnDefinition = "CHAR(5)")
+	@Pattern(regexp="[A-Z]{2}[0-9]{3}", message="Favor fornecer no formato NNAAA")
 	@NotNull
 	private String codigo;
 
